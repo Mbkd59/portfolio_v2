@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohane Boumedrar — Sysadmin & Infrastructure</title>
+  <meta name="description" content="Portfolio de Mohane Boumedrar, étudiant BUT3 Informatique (DAC) à l'IUT de Lille. En recherche d'un stage en administration systèmes/réseaux." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['Space Grotesk', 'sans-serif'],
+            terminal: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            primary: '#0ea5e9',
+            secondary: '#8b5cf6',
+            dark: '#020617',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --primary: #0ea5e9;
+      --secondary: #8b5cf6;
+      --bg-dark: #020617;
+      --green: #22d3ee;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: var(--bg-dark); }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      color: #f8fafc;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', sans-serif; }
+
+    /* Particles Canvas */
+    #particles-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Glass */
+    .glass {
+      background: rgba(2, 6, 23, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .glass-card {
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, transparent, rgba(14,165,233,0.25), transparent);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0.5;
+      transition: opacity 0.4s;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-4px) scale(1.01);
+      border-color: rgba(14,165,233,0.3);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .glass-card:hover::before { opacity: 1; }
+
+    /* Gradient text */
+    .text-gradient {
+      background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% 200%;
+      animation: gradient-flow 5s ease infinite;
+    }
+
+    @keyframes gradient-flow {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Section padding */
+    .section-padding { padding: 7rem 0; }
+
+    /* Fade-in-up animations */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-dark); }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #0ea5e9; }
+
+    /* ===== TERMINAL ===== */
+    .terminal-window {
+      background: #0a0f1e;
+      border: 1px solid rgba(14,165,233,0.35);
+      border-radius: 14px;
+      box-shadow: 0 0 60px rgba(14,165,233,0.12), 0 30px 60px rgba(0,0,0,0.5);
+      font-family: 'JetBrains Mono', monospace;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .terminal-titlebar {
+      background: rgba(14,165,233,0.08);
+      border-bottom: 1px solid rgba(14,165,233,0.15);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .term-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+    }
+
+    .terminal-body {
+      padding: 16px;
+      min-height: 320px;
+      max-height: 380px;
+      overflow-y: auto;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .terminal-body::-webkit-scrollbar { width: 4px; }
+    .terminal-body::-webkit-scrollbar-thumb { background: #1e3a5f; border-radius: 2px; }
+
+    .term-line { margin-bottom: 2px; }
+    .term-prompt { color: #0ea5e9; }
+    .term-cmd { color: #f8fafc; }
+    .term-output { color: #94a3b8; }
+    .term-green { color: #4ade80; }
+    .term-cyan { color: #22d3ee; }
+    .term-purple { color: #c084fc; }
+    .term-yellow { color: #facc15; }
+    .term-red { color: #f87171; }
+    .term-white { color: #f8fafc; }
+    .term-dim { color: #475569; }
+
+    .terminal-input-line {
+      display: flex;
+      align-items: center;
+      padding: 8px 16px 14px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      gap: 8px;
+    }
+
+    .terminal-input-line span { color: #0ea5e9; font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+
+    #term-input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #f8fafc;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      flex: 1;
+      caret-color: #0ea5e9;
+    }
+
+    /* Blinking cursor */
+    .cursor-blink {
+      display: inline-block;
+      width: 8px; height: 14px;
+      background: #0ea5e9;
+      animation: blink 1s step-end infinite;
+      vertical-align: middle;
+      margin-left: 2px;
+    }
+
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* ===== SKILLS BADGE ===== */
+    .skill-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      font-size: 12px;
+      border-radius: 8px;
+      background: rgba(14,165,233,0.08);
+      color: #94a3b8;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: all 0.25s;
+      cursor: default;
+    }
+
+    .skill-badge:hover {
+      background: rgba(14,165,233,0.18);
+      border-color: rgba(14,165,233,0.4);
+      color: #0ea5e9;
+      transform: translateY(-1px);
+    }
+
+    /* ===== SOFT SKILLS ===== */
+    .soft-card {
+      background: rgba(15,23,42,0.5);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 28px 24px;
+      transition: all 0.35s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .soft-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      border-radius: 0 0 16px 16px;
+      opacity: 0;
+      transition: opacity 0.35s;
+    }
+
+    .soft-card:hover { transform: translateY(-5px); border-color: rgba(14,165,233,0.3); }
+    .soft-card:hover::after { opacity: 1; }
+
+    .soft-card.blue::after  { background: linear-gradient(90deg, #0ea5e9, #38bdf8); }
+    .soft-card.purple::after { background: linear-gradient(90deg, #8b5cf6, #c084fc); }
+    .soft-card.cyan::after   { background: linear-gradient(90deg, #06b6d4, #22d3ee); }
+    .soft-card.green::after  { background: linear-gradient(90deg, #10b981, #34d399); }
+
+    .soft-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+
+    .soft-icon.blue   { background: rgba(14,165,233,0.12); }
+    .soft-icon.purple { background: rgba(139,92,246,0.12); }
+    .soft-icon.cyan   { background: rgba(6,182,212,0.12); }
+    .soft-icon.green  { background: rgba(16,185,129,0.12); }
+
+    /* Progress bar */
+    .skill-bar-bg {
+      background: rgba(255,255,255,0.06);
+      border-radius: 99px;
+      height: 6px;
+      margin-top: 8px;
+      overflow: hidden;
+    }
+
+    .skill-bar-fill {
+      height: 100%;
+      border-radius: 99px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 1s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .skill-bar-fill.animated { transform: scaleX(1); }
+
+    /* ===== PROJECT CARDS ===== */
+    .proj-card {
+      background: rgba(15,23,42,0.5);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.35s;
+    }
+
+    .proj-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(14,165,233,0.3);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+    }
+
+    .proj-tag {
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 6px;
+      background: rgba(14,165,233,0.1);
+      color: #0ea5e9;
+      border: 1px solid rgba(14,165,233,0.2);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ===== TIMELINE ===== */
+    .timeline-dot {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: #0ea5e9;
+      border: 2px solid var(--bg-dark);
+      box-shadow: 0 0 12px rgba(14,165,233,0.6);
+      flex-shrink: 0;
+    }
+
+    /* Nav active */
+    .nav-link {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #94a3b8;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover, .nav-link.active { color: #0ea5e9; }
+
+    /* Orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Glow button */
+    .btn-glow {
+      position: relative;
+      overflow: hidden;
+      background: #0ea5e9;
+      color: white;
+      font-weight: 700;
+      border-radius: 50px;
+      padding: 14px 32px;
+      box-shadow: 0 0 20px rgba(14,165,233,0.3);
+      transition: box-shadow 0.3s;
+    }
+
+    .btn-glow:hover { box-shadow: 0 0 35px rgba(14,165,233,0.6); }
+
+    .btn-glow .shine {
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.6s;
+    }
+
+    .btn-glow:hover .shine { transform: translateX(100%); }
+
+    .btn-outline {
+      padding: 14px 32px;
+      border-radius: 50px;
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #cbd5e1;
+      backdrop-filter: blur(8px);
+      transition: all 0.3s;
+      font-weight: 500;
+    }
+
+    .btn-outline:hover {
+      border-color: rgba(14,165,233,0.5);
+      background: rgba(255,255,255,0.05);
+      color: white;
+    }
+
+    /* Status badge */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 50px;
+      border: 1px solid rgba(74,222,128,0.3);
+      background: rgba(74,222,128,0.08);
+      color: #4ade80;
+      font-size: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.05em;
+    }
+
+    .status-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #4ade80;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    /* Mobile menu */
+    #mobile-menu { display: none; }
+    #mobile-menu.open { display: block; }
+  </style>
+</head>
+
+<body class="dark">
+
+<!-- Particles canvas -->
+<canvas id="particles-canvas"></canvas>
+
+<!-- ===== NAV ===== -->
+<nav class="fixed w-full z-50 glass border-b border-white/5">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-18 py-4">
+      <a href="#home" class="font-bold text-xl tracking-tight font-mono">
+        <span class="text-primary">Mohane</span><span class="text-slate-500">.B</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#home"       class="nav-link">Accueil</a>
+        <a href="#about"      class="nav-link">Profil</a>
+        <a href="#skills"     class="nav-link">Compétences</a>
+        <a href="#softskills" class="nav-link">Soft Skills</a>
+        <a href="#projects"   class="nav-link">Projets</a>
+        <a href="#experience" class="nav-link">Expérience</a>
+        <a href="#education"  class="nav-link">Formation</a>
+      </div>
+
+      <!-- Mobile toggle -->
+      <button id="mobile-toggle" class="md:hidden p-2 text-slate-400 hover:text-white">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="md:hidden glass border-t border-white/10 px-4 py-3 space-y-1">
+    <a href="#home"       class="block py-2 nav-link">Accueil</a>
+    <a href="#about"      class="block py-2 nav-link">Profil</a>
+    <a href="#skills"     class="block py-2 nav-link">Compétences</a>
+    <a href="#softskills" class="block py-2 nav-link">Soft Skills</a>
+    <a href="#projects"   class="block py-2 nav-link">Projets</a>
+    <a href="#experience" class="block py-2 nav-link">Expérience</a>
+    <a href="#education"  class="block py-2 nav-link">Formation</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="home" class="min-h-screen flex items-center pt-20 relative overflow-hidden">
+  <div class="orb w-96 h-96 bg-primary/15 top-1/4 left-1/6"></div>
+  <div class="orb w-80 h-80 bg-secondary/15 bottom-1/4 right-1/6"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+      <!-- Left: identity -->
+      <div class="fade-in-up">
+        <div class="status-badge mb-6">
+          <span class="status-dot"></span>
+          Disponible — Stage dès mi-mars 2026
+        </div>
+
+        <div class="inline-block px-4 py-1.5 mb-6 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-terminal tracking-widest uppercase">
+          Portfolio 2026
+        </div>
+
+        <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-tight leading-none">
+          <span class="text-gradient">Mohane</span><br/>
+          <span class="text-slate-200">Boumedrar</span>
+        </h1>
+
+        <h2 class="text-xl md:text-2xl text-slate-400 mb-6 font-light">
+          Sysadmin & Infrastructure · BUT3 Informatique
+        </h2>
+
+        <p class="text-slate-400 max-w-md mb-10 leading-relaxed">
+          Étudiant en 3ème année de BUT Informatique (parcours DAC) à l'IUT de Lille.
+          Passionné par les réseaux, les systèmes et l'automatisation d'infrastructure.
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a href="/cdn-cgi/l/email-protection#95f8fafdf4fbf0bbf7fae0f8f0f1e7f4e7bbf0e1e0d5e0fbfce3b8f9fcf9f9f0bbf3e7" class="btn-glow">
+            <div class="shine"></div>
+            Me contacter
+          </a>
+          <!-- ============================================================
+               📄 BOUTON CV — QUAND TON PDF EST PRÊT :
+               1. Place ton fichier CV dans le dossier "portfolio/" → nomme-le  CV_Mohane.pdf
+               2. Supprime les balises de commentaire  (les lignes "comment CV debut" et "comment CV fin")
+               3. C'est tout — le bouton apparaîtra automatiquement
+               ============================================================ -->
+          <!-- comment CV debut
+          <a href="CV_Mohane.pdf" target="_blank" class="btn-outline flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            Télécharger CV
+          </a>
+          comment CV fin -->
+
+          <a href="https://github.com/Mbkd59" target="_blank" class="btn-outline flex items-center gap-2">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+            </svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Terminal -->
+      <div class="fade-in-up" style="animation-delay:0.2s">
+        <div class="terminal-window">
+          <div class="terminal-titlebar">
+            <div class="term-dot" style="background:#ef4444"></div>
+            <div class="term-dot" style="background:#f59e0b"></div>
+            <div class="term-dot" style="background:#22c55e"></div>
+            <span class="ml-3 text-slate-500 text-xs font-terminal">mohane@portfolio:~</span>
+          </div>
+
+          <div class="terminal-body" id="term-output">
+            <!-- filled by JS -->
+          </div>
+
+          <div class="terminal-input-line">
+            <span>mohane@portfolio:~$</span>
+            <input id="term-input" type="text" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="tapez 'help' et appuyez sur Entrée..." />
+          </div>
+        </div>
+
+        <p class="text-center text-slate-600 text-xs font-terminal mt-3">
+          ↑↓ historique · Tab complétion · essayez whoami, skills, projects…
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about" class="section-padding relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+
+      <!-- Decorative card -->
+      <div class="relative group fade-in-up">
+        <div class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-500"></div>
+        <div class="relative rounded-2xl overflow-hidden border border-white/10 bg-slate-900">
+          <div class="p-10 space-y-6">
+            <!-- Stats -->
+            <div class="grid grid-cols-2 gap-4">
+              <div class="glass-card p-5 rounded-xl text-center">
+                <div class="text-3xl font-bold text-primary font-mono">3</div>
+                <div class="text-xs text-slate-500 mt-1 uppercase tracking-wider">ans d'études</div>
+              </div>
+              <div class="glass-card p-5 rounded-xl text-center">
+                <div class="text-3xl font-bold text-secondary font-mono">2</div>
+                <div class="text-xs text-slate-500 mt-1 uppercase tracking-wider">projets GitHub</div>
+              </div>
+              <div class="glass-card p-5 rounded-xl text-center">
+                <div class="text-3xl font-bold text-cyan-400 font-mono">16</div>
+                <div class="text-xs text-slate-500 mt-1 uppercase tracking-wider">semaines stage</div>
+              </div>
+              <div class="glass-card p-5 rounded-xl text-center">
+                <div class="text-2xl font-bold text-green-400 font-mono">CCNA2</div>
+                <div class="text-xs text-slate-500 mt-1 uppercase tracking-wider">certification</div>
+              </div>
+            </div>
+            <!-- Links -->
+            <div class="pt-4 border-t border-white/5 flex gap-4">
+              <a href="https://github.com/Mbkd59" target="_blank" class="flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                github.com/Mbkd59
+              </a>
+              <a href="/cdn-cgi/l/email-protection#6b0604030a050e4509041e060e0f190a19450e1f1e2b1e05021d46070207070e450d19" class="flex items-center gap-2 text-sm text-slate-400 hover:text-primary transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                Email
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="fade-in-up">
+        <h2 class="text-4xl font-bold mb-6 font-mono">Profil</h2>
+        <p class="text-slate-400 mb-6 leading-relaxed">
+          Étudiant en 3ème année de <span class="text-slate-200 font-semibold">BUT Informatique</span>
+          à l'IUT de Lille (parcours <span class="text-primary">DAC – Déploiement d'Applications Communicantes et Sécurisées</span>),
+          je me spécialise dans l'administration systèmes et réseaux.
+        </p>
+        <p class="text-slate-400 mb-8 leading-relaxed">
+          Avec une première expérience au <span class="text-slate-200 font-semibold">CHU de Roubaix</span>
+          en support N1/N2 (SCCM, GLPI, Active Directory), je cherche à approfondir mes compétences
+          dans un environnement professionnel stimulant.
+          Je suis à la recherche d'un <span class="text-primary font-semibold">stage de 16 semaines</span>
+          en administration systèmes/réseaux à partir de mi-mars 2026.
+        </p>
+
+        <h3 class="text-lg font-bold mb-4 text-primary">Mes Atouts</h3>
+        <div class="grid grid-cols-3 gap-3">
+          <div class="p-4 rounded-xl glass-card text-center border border-white/5">
+            <div class="text-2xl mb-2">🔧</div>
+            <div class="text-xs font-bold text-slate-300">Technique</div>
+          </div>
+          <div class="p-4 rounded-xl glass-card text-center border border-white/5">
+            <div class="text-2xl mb-2">⚡</div>
+            <div class="text-xs font-bold text-slate-300">Autonomie</div>
+          </div>
+          <div class="p-4 rounded-xl glass-card text-center border border-white/5">
+            <div class="text-2xl mb-2">🎯</div>
+            <div class="text-xs font-bold text-slate-300">Rigueur</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SKILLS ===== -->
+<section id="skills" class="section-padding" style="background: rgba(15,23,42,0.2);">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16 fade-in-up">
+      <h2 class="text-4xl font-bold font-mono mb-4">Compétences Techniques</h2>
+      <p class="text-slate-500 max-w-lg mx-auto">Stack systèmes, réseaux et infrastructure</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="skills-grid">
+
+      <div class="glass-card rounded-xl p-6 fade-in-up">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center text-sm">🖥️</div>
+          <h3 class="font-bold text-slate-200">Systèmes</h3>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="skill-badge">Windows Server</span>
+          <span class="skill-badge">Linux (Debian/Ubuntu)</span>
+          <span class="skill-badge">Active Directory</span>
+          <span class="skill-badge">SCCM</span>
+          <span class="skill-badge">GLPI</span>
+          <span class="skill-badge">GPO</span>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-xl p-6 fade-in-up">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-8 h-8 rounded-lg bg-secondary/20 flex items-center justify-center text-sm">🌐</div>
+          <h3 class="font-bold text-slate-200">Réseaux</h3>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="skill-badge">Cisco (CCNA 2)</span>
+          <span class="skill-badge">VLANs / Routing</span>
+          <span class="skill-badge">DNS / DHCP</span>
+          <span class="skill-badge">LDAP</span>
+          <span class="skill-badge">NFS / Proxy</span>
+          <span class="skill-badge">Pare-feu</span>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-xl p-6 fade-in-up">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-8 h-8 rounded-lg bg-cyan-500/20 flex items-center justify-center text-sm">🐳</div>
+          <h3 class="font-bold text-slate-200">DevOps & Infra</h3>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="skill-badge">Docker / Compose</span>
+          <span class="skill-badge">Vagrant</span>
+          <span class="skill-badge">Ansible</span>
+          <span class="skill-badge">Prometheus</span>
+          <span class="skill-badge">Grafana</span>
+          <span class="skill-badge">Alertmanager</span>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-xl p-6 fade-in-up">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center text-sm">💻</div>
+          <h3 class="font-bold text-slate-200">Développement</h3>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="skill-badge">Python</span>
+          <span class="skill-badge">Bash / Shell</span>
+          <span class="skill-badge">SQL</span>
+          <span class="skill-badge">JavaScript</span>
+          <span class="skill-badge">Next.js</span>
+          <span class="skill-badge">Node.js</span>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-xl p-6 fade-in-up">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-8 h-8 rounded-lg bg-yellow-500/20 flex items-center justify-center text-sm">🔒</div>
+          <h3 class="font-bold text-slate-200">Sécurité</h3>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="skill-badge">ACLs Cisco</span>
+          <span class="skill-badge">PKI / Certificats</span>
+          <span class="skill-badge">SSH / GPG</span>
+          <span class="skill-badge">Audit AD</span>
+          <span class="skill-badge">Stormshield (notions)</span>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-xl p-6 fade-in-up">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-8 h-8 rounded-lg bg-purple-500/20 flex items-center justify-center text-sm">🛠️</div>
+          <h3 class="font-bold text-slate-200">Outils & Méthodes</h3>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="skill-badge">Git / GitHub</span>
+          <span class="skill-badge">GitLab CI/CD</span>
+          <span class="skill-badge">AGILE / SCRUM</span>
+          <span class="skill-badge">Wireshark</span>
+          <span class="skill-badge">VS Code</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOFT SKILLS ===== -->
+<section id="softskills" class="section-padding">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16 fade-in-up">
+      <h2 class="text-4xl font-bold font-mono mb-4">Comportement & Soft Skills</h2>
+      <p class="text-slate-500 max-w-lg mx-auto">
+        Les compétences humaines qui font la différence au quotidien en équipe et en autonomie
+      </p>
+    </div>
+
+    <!-- Main grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+
+      <div class="soft-card blue fade-in-up">
+        <div class="soft-icon blue">🎯</div>
+        <h3 class="font-bold text-lg mb-2">Rigueur & Organisation</h3>
+        <p class="text-sm text-slate-400 leading-relaxed mb-4">
+          Capacité à structurer mes tâches, respecter les délais et maintenir une documentation claire.
+          Travail méthodique, aussi bien en solo qu'en équipe.
+        </p>
+        <div class="flex items-center justify-between text-xs text-slate-500">
+          <span>Niveau</span>
+          <span class="text-primary font-terminal">Avancé</span>
+        </div>
+        <div class="skill-bar-bg">
+          <div class="skill-bar-fill" style="background: linear-gradient(90deg, #0ea5e9, #38bdf8); width:88%"></div>
+        </div>
+      </div>
+
+      <div class="soft-card purple fade-in-up">
+        <div class="soft-icon purple">🤝</div>
+        <h3 class="font-bold text-lg mb-2">Esprit d'Équipe</h3>
+        <p class="text-sm text-slate-400 leading-relaxed mb-4">
+          À l'aise dans les environnements collaboratifs (projets Agile, groupes de TP).
+          J'écoute, je contribue et je m'adapte aux dynamiques de groupe.
+        </p>
+        <div class="flex items-center justify-between text-xs text-slate-500">
+          <span>Niveau</span>
+          <span class="text-purple-400 font-terminal">Avancé</span>
+        </div>
+        <div class="skill-bar-bg">
+          <div class="skill-bar-fill" style="background: linear-gradient(90deg, #8b5cf6, #c084fc); width:85%"></div>
+        </div>
+      </div>
+
+      <div class="soft-card cyan fade-in-up">
+        <div class="soft-icon cyan">⚡</div>
+        <h3 class="font-bold text-lg mb-2">Autonomie & Proactivité</h3>
+        <p class="text-sm text-slate-400 leading-relaxed mb-4">
+          Capacité à prendre des initiatives, chercher des solutions par moi-même
+          et livrer sans avoir besoin d'être constamment encadré.
+        </p>
+        <div class="flex items-center justify-between text-xs text-slate-500">
+          <span>Niveau</span>
+          <span class="text-cyan-400 font-terminal">Confirmé</span>
+        </div>
+        <div class="skill-bar-bg">
+          <div class="skill-bar-fill" style="background: linear-gradient(90deg, #06b6d4, #22d3ee); width:82%"></div>
+        </div>
+      </div>
+
+      <div class="soft-card green fade-in-up">
+        <div class="soft-icon green">🔍</div>
+        <h3 class="font-bold text-lg mb-2">Curiosité Technique</h3>
+        <p class="text-sm text-slate-400 leading-relaxed mb-4">
+          Toujours en veille sur les nouvelles technos (monitoring, sécurité, infra cloud).
+          J'apprends vite et j'aime comprendre comment les choses fonctionnent en profondeur.
+        </p>
+        <div class="flex items-center justify-between text-xs text-slate-500">
+          <span>Niveau</span>
+          <span class="text-green-400 font-terminal">Élevé</span>
+        </div>
+        <div class="skill-bar-bg">
+          <div class="skill-bar-fill" style="background: linear-gradient(90deg, #10b981, #34d399); width:90%"></div>
+        </div>
+      </div>
+
+      <div class="soft-card blue fade-in-up">
+        <div class="soft-icon blue">💬</div>
+        <h3 class="font-bold text-lg mb-2">Communication Claire</h3>
+        <p class="text-sm text-slate-400 leading-relaxed mb-4">
+          Capable d'expliquer des sujets techniques à des interlocuteurs non-techs.
+          Rédaction de docs, comptes-rendus, et communication directe avec les utilisateurs.
+        </p>
+        <div class="flex items-center justify-between text-xs text-slate-500">
+          <span>Niveau</span>
+          <span class="text-primary font-terminal">Bon</span>
+        </div>
+        <div class="skill-bar-bg">
+          <div class="skill-bar-fill" style="background: linear-gradient(90deg, #0ea5e9, #38bdf8); width:78%"></div>
+        </div>
+      </div>
+
+      <div class="soft-card purple fade-in-up">
+        <div class="soft-icon purple">🔄</div>
+        <h3 class="font-bold text-lg mb-2">Adaptabilité</h3>
+        <p class="text-sm text-slate-400 leading-relaxed mb-4">
+          Passage rapide d'un environnement Windows à Linux, d'un contexte scolaire
+          à un contexte hospitalier. Confortable avec l'incertitude et les pivots.
+        </p>
+        <div class="flex items-center justify-between text-xs text-slate-500">
+          <span>Niveau</span>
+          <span class="text-purple-400 font-terminal">Confirmé</span>
+        </div>
+        <div class="skill-bar-bg">
+          <div class="skill-bar-fill" style="background: linear-gradient(90deg, #8b5cf6, #c084fc); width:83%"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Quote / testimonial style -->
+    <div class="glass-card rounded-2xl p-8 fade-in-up text-center max-w-3xl mx-auto">
+      <div class="text-4xl mb-4">💡</div>
+      <blockquote class="text-slate-300 text-lg leading-relaxed italic mb-3">
+        "Je ne cherche pas juste à faire fonctionner les choses — je cherche à comprendre pourquoi elles fonctionnent,
+        pour mieux anticiper quand elles ne fonctionneront plus."
+      </blockquote>
+      <div class="text-primary text-sm font-terminal">— Mohane Boumedrar</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<section id="projects" class="section-padding" style="background: rgba(15,23,42,0.2);">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16 fade-in-up">
+      <h2 class="text-4xl font-bold font-mono mb-4">Projets</h2>
+      <p class="text-slate-500 max-w-lg mx-auto">Réalisations concrètes — disponibles sur GitHub</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Project 1 -->
+      <a href="https://github.com/Mbkd59" target="_blank" class="proj-card block fade-in-up group">
+        <div class="h-40 bg-gradient-to-br from-slate-900 to-primary/10 relative flex items-center justify-center">
+          <div class="text-5xl opacity-60 group-hover:opacity-90 group-hover:scale-110 transition-all duration-300">📊</div>
+          <div class="absolute top-3 right-3">
+            <span class="text-xs font-terminal px-2 py-1 rounded-md border border-cyan-500/30 bg-cyan-500/10 text-cyan-400">DevOps</span>
+          </div>
+        </div>
+        <div class="p-5">
+          <h3 class="font-bold text-lg mb-2 group-hover:text-primary transition-colors">Stack de Monitoring Réseau</h3>
+          <p class="text-sm text-slate-400 mb-4 leading-relaxed">
+            Stack complète de supervision réseau déployée via Docker Compose et Ansible.
+            Dashboards Grafana temps réel, alertes Alertmanager, collecte Prometheus.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="proj-tag">Prometheus</span>
+            <span class="proj-tag">Grafana</span>
+            <span class="proj-tag">Ansible</span>
+            <span class="proj-tag">Docker Compose</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Project 2 -->
+      <a href="https://github.com/Mbkd59" target="_blank" class="proj-card block fade-in-up group">
+        <div class="h-40 bg-gradient-to-br from-slate-900 to-secondary/10 relative flex items-center justify-center">
+          <div class="text-5xl opacity-60 group-hover:opacity-90 group-hover:scale-110 transition-all duration-300">🌐</div>
+          <div class="absolute top-3 right-3">
+            <span class="text-xs font-terminal px-2 py-1 rounded-md border border-purple-500/30 bg-purple-500/10 text-purple-400">Réseau</span>
+          </div>
+        </div>
+        <div class="p-5">
+          <h3 class="font-bold text-lg mb-2 group-hover:text-primary transition-colors">Lab FAI Multi-Sites</h3>
+          <p class="text-sm text-slate-400 mb-4 leading-relaxed">
+            Simulation d'un réseau FAI multi-sites avec Vagrant et Ansible. Services DNS, LDAP, Mail,
+            Web, NFS et Proxy entièrement automatisés et configurés.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="proj-tag">Vagrant</span>
+            <span class="proj-tag">Ansible</span>
+            <span class="proj-tag">DNS/LDAP</span>
+            <span class="proj-tag">NFS / Proxy</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Project 3 -->
+      <a href="https://github.com/Mbkd59" target="_blank" class="proj-card block fade-in-up group">
+        <div class="h-40 bg-gradient-to-br from-slate-900 to-green-900/20 relative flex items-center justify-center">
+          <div class="text-5xl opacity-60 group-hover:opacity-90 group-hover:scale-110 transition-all duration-300">🛒</div>
+          <div class="absolute top-3 right-3">
+            <span class="text-xs font-terminal px-2 py-1 rounded-md border border-green-500/30 bg-green-500/10 text-green-400">Full-Stack</span>
+          </div>
+        </div>
+        <div class="p-5">
+          <h3 class="font-bold text-lg mb-2 group-hover:text-primary transition-colors">E-commerce Pokémon TCG</h3>
+          <p class="text-sm text-slate-400 mb-4 leading-relaxed">
+            Site e-commerce custom de A à Z pour cartes Pokémon.
+            Authentification, paiement Stripe, ORM Prisma, déployé avec Docker et CI/CD GitHub Actions.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="proj-tag">Next.js</span>
+            <span class="proj-tag">PostgreSQL</span>
+            <span class="proj-tag">Prisma</span>
+            <span class="proj-tag">Stripe</span>
+            <span class="proj-tag">Docker</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== EXPERIENCE ===== -->
+<section id="experience" class="section-padding">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16 fade-in-up">
+      <h2 class="text-4xl font-bold font-mono mb-4">Expérience Professionnelle</h2>
+    </div>
+
+    <div class="relative">
+      <!-- Vertical line -->
+      <div class="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/40 to-transparent md:left-1/2 hidden md:block"></div>
+
+      <!-- Entry: CHU -->
+      <div class="fade-in-up mb-12 md:grid md:grid-cols-2 md:gap-12 items-start">
+        <div class="md:text-right md:pr-8">
+          <div class="text-primary font-terminal text-sm mb-1">Mai 2024 — Juillet 2024</div>
+          <div class="text-slate-500 text-sm">CHU de Roubaix · Roubaix, Nord</div>
+        </div>
+        <div class="mt-3 md:mt-0 md:pl-8 relative">
+          <div class="absolute -left-[21px] top-1 hidden md:block">
+            <div class="timeline-dot"></div>
+          </div>
+          <div class="glass-card rounded-xl p-5">
+            <h3 class="font-bold text-lg mb-1">Stage — Support Informatique N1/N2</h3>
+            <div class="text-slate-500 text-sm mb-3 font-terminal">Direction des Systèmes d'Information</div>
+            <ul class="text-sm text-slate-400 space-y-1">
+              <li>→ Support utilisateurs N1/N2 sur parc Windows</li>
+              <li>→ Administration Active Directory (comptes, OU, GPO)</li>
+              <li>→ Déploiement de postes via SCCM</li>
+              <li>→ Gestion des tickets incidents sous GLPI</li>
+              <li>→ Câblage réseau, remplacement de matériel</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Entry: Projet BUT3 -->
+      <div class="fade-in-up mb-12 md:grid md:grid-cols-2 md:gap-12 items-start">
+        <div class="md:text-right md:pr-8 md:col-start-2 md:row-start-1">
+          <div class="text-secondary font-terminal text-sm mb-1">2024 — 2026</div>
+          <div class="text-slate-500 text-sm">IUT de Lille · Projet Universitaire</div>
+        </div>
+        <div class="mt-3 md:mt-0 md:pl-8 md:col-start-2 md:row-start-1 relative">
+          <div class="absolute -left-[21px] top-1 hidden md:block">
+            <div class="timeline-dot" style="background:#8b5cf6; box-shadow: 0 0 12px rgba(139,92,246,0.6)"></div>
+          </div>
+        </div>
+        <div class="md:col-start-1 md:row-start-1 md:pr-8 relative">
+          <div class="absolute -right-[21px] top-1 hidden md:block">
+            <div class="timeline-dot" style="background:#8b5cf6; box-shadow: 0 0 12px rgba(139,92,246,0.6)"></div>
+          </div>
+          <div class="glass-card rounded-xl p-5">
+            <h3 class="font-bold text-lg mb-1">Projet CI/CD Agile — groupe-13</h3>
+            <div class="text-slate-500 text-sm mb-3 font-terminal">BUT3 · IUT de Lille</div>
+            <ul class="text-sm text-slate-400 space-y-1">
+              <li>→ Stack: React/Vite/TS · Spring Boot · PostgreSQL 16</li>
+              <li>→ Infrastructure: Vagrant + Docker Compose + Nginx</li>
+              <li>→ Pipeline CI/CD complet sur GitLab (build/test/push/deploy)</li>
+              <li>→ Organisation Agile sur 4 repos GitLab (infra, front, server, doc)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== EDUCATION ===== -->
+<section id="education" class="section-padding" style="background: rgba(15,23,42,0.2);">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16 fade-in-up">
+      <h2 class="text-4xl font-bold font-mono mb-4">Formation</h2>
+    </div>
+
+    <div class="space-y-6">
+
+      <div class="glass-card rounded-xl p-6 fade-in-up">
+        <div class="flex items-start justify-between flex-wrap gap-3">
+          <div>
+            <h3 class="font-bold text-lg">BUT Informatique — Parcours DAC</h3>
+            <div class="text-primary text-sm font-terminal mt-1">IUT de Lille · Villeneuve d'Ascq</div>
+            <p class="text-slate-400 text-sm mt-2">Déploiement d'Applications Communicantes et Sécurisées.
+            Systèmes, réseaux, sécurité, développement et DevOps.</p>
+          </div>
+          <span class="text-xs font-terminal px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary whitespace-nowrap">
+            2023 — 2026
+          </span>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-xl p-6 fade-in-up">
+        <div class="flex items-start justify-between flex-wrap gap-3">
+          <div>
+            <h3 class="font-bold text-lg">BTS CIEL — Cybersécurité, Informatique et Réseaux</h3>
+            <div class="text-secondary text-sm font-terminal mt-1">Lycée technique · Nord</div>
+            <p class="text-slate-400 text-sm mt-2">Expérience pratique en C/C++, Arduino et systèmes embarqués.</p>
+          </div>
+          <span class="text-xs font-terminal px-3 py-1.5 rounded-full border border-secondary/30 bg-secondary/10 text-secondary whitespace-nowrap">
+            2021 — 2023
+          </span>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-xl p-6 fade-in-up">
+        <div class="flex items-start justify-between flex-wrap gap-3">
+          <div>
+            <h3 class="font-bold text-lg">🏅 Certification CCNA 2 — Switching, Routing & Wireless</h3>
+            <div class="text-cyan-400 text-sm font-terminal mt-1">Cisco Networking Academy</div>
+            <p class="text-slate-400 text-sm mt-2">Routage, commutation, VLANs, STP, EtherChannel, ACLs.</p>
+          </div>
+          <span class="text-xs font-terminal px-3 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 whitespace-nowrap">
+            Obtenu
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="py-12 text-center border-t border-white/5" style="background:#020617;">
+  <div class="flex justify-center gap-8 mb-6">
+    <a href="https://github.com/Mbkd59" target="_blank" class="text-slate-500 hover:text-white transition-colors text-sm font-terminal">GitHub</a>
+    <a href="/cdn-cgi/l/email-protection#7c1113141d1219521e13091119180e1d0e521908093c0912150a511015101019521a0e" class="text-slate-500 hover:text-primary transition-colors text-sm font-terminal">Email</a>
+    <a href="#home" class="text-slate-500 hover:text-white transition-colors text-sm font-terminal">↑ Haut de page</a>
+  </div>
+  <p class="text-slate-600 text-sm">&copy; 2026 Mohane Boumedrar · Roubaix, France</p>
+  <p class="text-slate-700 text-xs mt-1">Conçu avec passion et code.</p>
+</footer>
+
+
+<!-- ===== SCRIPTS ===== -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ============================================================
+// PARTICLES
+// ============================================================
+(function initParticles() {
+  const canvas = document.getElementById('particles-canvas');
+  const ctx = canvas.getContext('2d');
+  let w, h, particles = [], raf;
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  class Particle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * w;
+      this.y = Math.random() * h;
+      this.vx = (Math.random() - 0.5) * 0.25;
+      this.vy = (Math.random() - 0.5) * 0.25;
+      this.size = Math.random() * 1.8 + 0.4;
+    }
+    update() {
+      this.x += this.vx; this.y += this.vy;
+      if (this.x < 0) this.x = w;
+      if (this.x > w) this.x = 0;
+      if (this.y < 0) this.y = h;
+      if (this.y > h) this.y = 0;
+    }
+  }
+
+  for (let i = 0; i < 45; i++) particles.push(new Particle());
+
+  function animate() {
+    ctx.clearRect(0, 0, w, h);
+    particles.forEach(p => {
+      p.update();
+      ctx.fillStyle = 'rgba(14,165,233,0.35)';
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const d = Math.sqrt(dx * dx + dy * dy);
+        if (d < 130) {
+          ctx.strokeStyle = `rgba(14,165,233,${0.06 * (1 - d / 130)})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    raf = requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+// ============================================================
+// ANIMATIONS (IntersectionObserver)
+// ============================================================
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+// Skill bars animation
+const barObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+        bar.classList.add('animated');
+      });
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.soft-card').forEach(el => barObserver.observe(el));
+
+// ============================================================
+// MOBILE NAV
+// ============================================================
+document.getElementById('mobile-toggle').addEventListener('click', () => {
+  document.getElementById('mobile-menu').classList.toggle('open');
+});
+
+document.querySelectorAll('#mobile-menu a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('mobile-menu').classList.remove('open'));
+});
+
+// ============================================================
+// ACTIVE NAV
+// ============================================================
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+
+// ============================================================
+// TERMINAL
+// ============================================================
+(function initTerminal() {
+  const output = document.getElementById('term-output');
+  const input  = document.getElementById('term-input');
+
+  const history = [];
+  let histIdx = -1;
+
+  const COMMANDS = {
+    help: () => `
+<div class="term-green mb-1">Commandes disponibles :</div>
+<div class="term-output">  <span class="term-cyan">whoami</span>      → Qui suis-je ?</div>
+<div class="term-output">  <span class="term-cyan">skills</span>      → Compétences techniques</div>
+<div class="term-output">  <span class="term-cyan">softskills</span>  → Compétences comportementales</div>
+<div class="term-output">  <span class="term-cyan">projects</span>    → Mes projets GitHub</div>
+<div class="term-output">  <span class="term-cyan">experience</span>  → Expériences pro</div>
+<div class="term-output">  <span class="term-cyan">contact</span>     → Me contacter</div>
+<div class="term-output">  <span class="term-cyan">stage</span>       → Info stage recherché</div>
+<div class="term-output">  <span class="term-cyan">ls</span>          → Sections du portfolio</div>
+<div class="term-output">  <span class="term-cyan">clear</span>       → Vider le terminal</div>
+<div class="term-output">  <span class="term-cyan">github</span>      → Ouvrir GitHub</div>
+`,
+    whoami: () => `
+<div><span class="term-green">Mohane Boumedrar</span></div>
+<div class="term-output">Étudiant BUT3 Informatique — Parcours DAC</div>
+<div class="term-output">IUT de Lille · Basé à Roubaix, Nord (59)</div>
+<div class="mt-1"><span class="term-dim">Spécialité :</span> <span class="term-cyan">Systèmes · Réseaux · Infrastructure</span></div>
+<div><span class="term-dim">Certifié  :</span> <span class="term-yellow">CCNA 2 (Cisco)</span></div>
+<div><span class="term-dim">Statut    :</span> <span class="term-green">🟢 Disponible — Stage dès mi-mars 2026</span></div>
+`,
+    skills: () => `
+<div class="term-green mb-1">🖥️  Systèmes</div>
+<div class="term-output">   Windows Server, Linux (Debian/Ubuntu), Active Directory, SCCM, GLPI</div>
+<div class="term-green mt-1 mb-1">🌐  Réseaux</div>
+<div class="term-output">   Cisco CCNA2, VLANs, DNS, DHCP, LDAP, Proxy, Pare-feu</div>
+<div class="term-green mt-1 mb-1">🐳  DevOps / Infra</div>
+<div class="term-output">   Docker, Docker Compose, Vagrant, Ansible, Prometheus, Grafana</div>
+<div class="term-green mt-1 mb-1">💻  Dev</div>
+<div class="term-output">   Python, Bash, SQL, JavaScript, Next.js, Node.js</div>
+`,
+    softskills: () => `
+<div class="term-cyan mb-1">Compétences comportementales :</div>
+<div class="term-output">  🎯  <span class="term-white">Rigueur & Organisation</span>     ████████░░  88%</div>
+<div class="term-output">  🤝  <span class="term-white">Esprit d'équipe</span>            ████████░░  85%</div>
+<div class="term-output">  ⚡  <span class="term-white">Autonomie & Proactivité</span>    ████████░░  82%</div>
+<div class="term-output">  🔍  <span class="term-white">Curiosité technique</span>        █████████░  90%</div>
+<div class="term-output">  💬  <span class="term-white">Communication</span>              ███████░░░  78%</div>
+<div class="term-output">  🔄  <span class="term-white">Adaptabilité</span>               ████████░░  83%</div>
+`,
+    projects: () => `
+<div class="term-cyan mb-1">Projets GitHub :</div>
+<div>
+  <span class="term-yellow">1.</span> <span class="term-white">Stack Monitoring Réseau</span>
+  <div class="term-output">   Prometheus · Grafana · Alertmanager · Ansible · Docker Compose</div>
+</div>
+<div class="mt-1">
+  <span class="term-yellow">2.</span> <span class="term-white">Lab FAI Multi-Sites</span>
+  <div class="term-output">   Vagrant · Ansible · DNS · LDAP · Mail · Web · NFS · Proxy</div>
+</div>
+<div class="mt-1">
+  <span class="term-yellow">3.</span> <span class="term-white">E-commerce Pokémon TCG</span>
+  <div class="term-output">   Next.js · PostgreSQL · Prisma · Stripe · Docker · CI/CD</div>
+</div>
+<div class="mt-2 term-dim">→ <a href="https://github.com/Mbkd59" target="_blank" class="term-primary hover:underline" style="color:#0ea5e9">github.com/Mbkd59</a></div>
+`,
+    experience: () => `
+<div class="term-cyan mb-1">Expériences professionnelles :</div>
+<div>
+  <span class="term-green">CHU de Roubaix</span> · <span class="term-dim">Mai–Juil 2024</span>
+  <div class="term-output">  Stage Support N1/N2 · SCCM · GLPI · Active Directory</div>
+</div>
+<div class="mt-2">
+  <span class="term-green">Projet Agile CI/CD</span> · <span class="term-dim">2024–2026</span>
+  <div class="term-output">  BUT3 IUT Lille · Docker · Vagrant · GitLab · React · Spring Boot</div>
+</div>
+`,
+    contact: () => `
+<div class="term-cyan mb-1">Contact :</div>
+<div class="term-output">  📧  <a href="mailto:mohane.boumedrar.etu@univ-lille.fr" class="hover:underline" style="color:#0ea5e9">mohane.boumedrar.etu@univ-lille.fr</a></div>
+<div class="term-output">  🐙  <a href="https://github.com/Mbkd59" target="_blank" class="hover:underline" style="color:#0ea5e9">github.com/Mbkd59</a></div>
+<div class="term-output">  📍  Roubaix, Nord (59) — Île-de-France possible</div>
+`,
+    stage: () => `
+<div class="term-green">🔍 Stage recherché :</div>
+<div class="term-output">  Durée     : <span class="term-white">16 semaines</span></div>
+<div class="term-output">  Début     : <span class="term-white">Mi-mars 2026</span></div>
+<div class="term-output">  Domaine   : <span class="term-white">Admin systèmes / réseaux (N1/N2)</span></div>
+<div class="term-output">  Lieu      : <span class="term-white">Nord (préférence) · France entière</span></div>
+<div class="term-output">  Contexte  : <span class="term-white">Validation du BUT3 Informatique</span></div>
+<div class="mt-1 term-dim">Candidatures : Nexylan, Keolis Ilévia, Stormshield, Sopra Steria, LWS…</div>
+`,
+    ls: () => `
+<div class="term-cyan">Sections disponibles :</div>
+<div class="term-output">  drwxr-xr-x  <a href="#home"       class="hover:underline" style="color:#f8fafc">home/</a>        → Accueil</div>
+<div class="term-output">  drwxr-xr-x  <a href="#about"      class="hover:underline" style="color:#f8fafc">about/</a>       → Profil</div>
+<div class="term-output">  drwxr-xr-x  <a href="#skills"     class="hover:underline" style="color:#f8fafc">skills/</a>      → Compétences</div>
+<div class="term-output">  drwxr-xr-x  <a href="#softskills" class="hover:underline" style="color:#f8fafc">softskills/</a>  → Comportement</div>
+<div class="term-output">  drwxr-xr-x  <a href="#projects"   class="hover:underline" style="color:#f8fafc">projects/</a>    → Projets</div>
+<div class="term-output">  drwxr-xr-x  <a href="#experience" class="hover:underline" style="color:#f8fafc">experience/</a>  → Expérience</div>
+<div class="term-output">  drwxr-xr-x  <a href="#education"  class="hover:underline" style="color:#f8fafc">education/</a>   → Formation</div>
+`,
+    github: () => {
+      window.open('https://github.com/Mbkd59', '_blank');
+      return `<div class="term-green">Ouverture de github.com/Mbkd59…</div>`;
+    },
+    clear: () => '__clear__',
+  };
+
+  // Boot sequence
+  const boot = [
+    { html: `<div class="term-dim">Initialisation du portfolio…</div>`, delay: 0 },
+    { html: `<div class="term-output"><span class="term-green">✓</span> Chargement des données…</div>`, delay: 400 },
+    { html: `<div class="term-output"><span class="term-green">✓</span> Stack infra opérationnelle</div>`, delay: 800 },
+    { html: `<div class="term-output"><span class="term-green">✓</span> Bienvenue sur le portfolio de <span class="term-cyan">Mohane Boumedrar</span></div>`, delay: 1200 },
+    { html: `<div class="term-output mt-1">Tapez <span class="term-cyan">help</span> pour voir les commandes disponibles.</div>`, delay: 1600 },
+  ];
+
+  function print(html) {
+    const div = document.createElement('div');
+    div.className = 'term-line';
+    div.innerHTML = html;
+    output.appendChild(div);
+    output.scrollTop = output.scrollHeight;
+  }
+
+  boot.forEach(({ html, delay }) => {
+    setTimeout(() => print(html), delay);
+  });
+
+  function runCommand(raw) {
+    const cmd = raw.trim().toLowerCase();
+    if (!cmd) return;
+
+    history.unshift(cmd);
+    histIdx = -1;
+
+    // echo
+    print(`<div><span class="term-prompt">mohane@portfolio:~$</span> <span class="term-cmd">${raw}</span></div>`);
+
+    if (cmd === 'clear') {
+      output.innerHTML = '';
+      return;
+    }
+
+    const fn = COMMANDS[cmd];
+    if (fn) {
+      const result = fn();
+      if (result !== '__clear__') print(result);
+    } else {
+      print(`<div class="term-red">bash: ${raw}: command not found</div><div class="term-dim">Tapez <span class="term-cyan">help</span> pour la liste des commandes.</div>`);
+    }
+  }
+
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      const val = input.value;
+      input.value = '';
+      runCommand(val);
+    }
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (histIdx < history.length - 1) {
+        histIdx++;
+        input.value = history[histIdx];
+      }
+    }
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (histIdx > 0) { histIdx--; input.value = history[histIdx]; }
+      else { histIdx = -1; input.value = ''; }
+    }
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      const partial = input.value.toLowerCase();
+      const matches = Object.keys(COMMANDS).filter(k => k.startsWith(partial));
+      if (matches.length === 1) input.value = matches[0];
+      else if (matches.length > 1) {
+        print(`<div class="term-prompt">mohane@portfolio:~$</div>`);
+        print(`<div class="term-output">${matches.join('  ')}</div>`);
+      }
