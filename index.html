@@ -381,7 +381,6 @@
     </div>
     <div class="nav-controls">
       <button class="ctrl-btn" id="lang-btn"><span id="lang-flag">🇬🇧</span><span id="lang-label">EN</span></button>
-      <button class="ctrl-btn" id="theme-btn"><span id="theme-icon">☀️</span></button>
       <button class="nav-burger" id="burger"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -412,8 +411,8 @@
           <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
           <span data-i18n="hero.contact">Me contacter</span>
         </a>
-        <!-- 📄 CV : place CV_Mohane.pdf dans le même dossier que index.html -->
-        <a href="CV_Mohane.pdf" target="_blank" class="btn-secondary">
+        <!-- 📄 CV : place CV_BOUMEDRAR_MOHANE.pdf dans le même dossier que index.html -->
+        <a href="CV_BOUMEDRAR_MOHANE.pdf" target="_blank" class="btn-secondary">
           <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
           <span data-i18n="hero.cv">Télécharger CV</span>
         </a>
@@ -479,7 +478,7 @@
 <!-- ==================== SOFT SKILLS ==================== -->
 <section id="softskills" class="section-pad section-alt">
   <div class="container">
-    <div class="sec-header"><h2 data-i18n="soft.title">Comportement & Soft Skills</h2><p data-i18n="soft.sub">Les compétences humaines qui font la différence</p></div>
+    <div class="sec-header"><h2 data-i18n="soft.title">Soft Skills</h2><p data-i18n="soft.sub">Les compétences humaines qui font la différence</p></div>
     <div class="soft-grid">
       <div class="soft-card cb"><div class="soft-icon cb">🎯</div><h3 data-i18n="soft.s1.title">Rigueur & Organisation</h3><p data-i18n="soft.s1.desc">Structurer mes tâches, respecter les délais et maintenir une documentation claire.</p><div class="bar-label"><span data-i18n="soft.level">Niveau</span><span style="color:var(--blue);font-family:'JetBrains Mono',monospace;" data-i18n="soft.s1.lvl">Avancé</span></div><div class="bar-bg"><div class="bar-fill" style="background:linear-gradient(90deg,var(--blue),#38bdf8);width:88%;"></div></div></div>
       <div class="soft-card cp"><div class="soft-icon cp">🤝</div><h3 data-i18n="soft.s2.title">Esprit d'Équipe</h3><p data-i18n="soft.s2.desc">À l'aise dans les environnements collaboratifs. J'écoute, contribue et m'adapte.</p><div class="bar-label"><span data-i18n="soft.level">Niveau</span><span style="color:#c084fc;font-family:'JetBrains Mono',monospace;" data-i18n="soft.s2.lvl">Avancé</span></div><div class="bar-bg"><div class="bar-fill" style="background:linear-gradient(90deg,var(--purple),#c084fc);width:85%;"></div></div></div>
@@ -524,15 +523,21 @@
           </div>
         </div>
       </div>
+
+      <!-- Projets académiques -->
+      <div style="text-align:center;margin-bottom:24px;">
+        <span style="font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--dim);text-transform:uppercase;letter-spacing:0.1em;" data-i18n="exp.academic_label">Projets académiques</span>
+      </div>
+
       <div class="timeline-entry">
-        <div class="tl-meta"><div class="tl-date" style="color:var(--purple);">2024 — 2026</div><div class="tl-place" data-i18n="exp.e2.place">IUT de Lille · Projet Universitaire</div></div>
+        <div class="tl-meta"><div class="tl-date" style="color:var(--purple);">2024 — 2026</div><div class="tl-place" data-i18n="exp.e2.place">IUT de Lille · SAE</div></div>
         <div class="tl-card-wrap"><div class="tl-dot" style="background:var(--purple);box-shadow:0 0 12px rgba(139,92,246,0.6);"></div>
-          <div class="card"><h3 style="font-size:16px;margin-bottom:4px;" data-i18n="exp.e2.role">Projet CI/CD Agile — groupe-13</h3><div style="font-size:12px;color:var(--dim);font-family:'JetBrains Mono',monospace;margin-bottom:14px;" data-i18n="exp.e2.dept">BUT3 · IUT de Lille</div>
+          <div class="card"><h3 style="font-size:16px;margin-bottom:4px;" data-i18n="exp.e2.role">SAE — Infra CI/CD · groupe-13</h3><div style="font-size:12px;color:var(--dim);font-family:'JetBrains Mono',monospace;margin-bottom:14px;" data-i18n="exp.e2.dept">BUT3 · IUT de Lille</div>
             <ul style="font-size:13px;color:var(--muted);list-style:none;display:flex;flex-direction:column;gap:5px;">
-              <li data-i18n="exp.e2.t1">→ Stack : React/Vite/TS · Spring Boot · PostgreSQL 16</li>
-              <li data-i18n="exp.e2.t2">→ Infrastructure : Vagrant + Docker Compose + Nginx</li>
-              <li data-i18n="exp.e2.t3">→ Pipeline CI/CD complet sur GitLab</li>
-              <li data-i18n="exp.e2.t4">→ Organisation Agile sur 4 repos GitLab</li>
+              <li data-i18n="exp.e2.t1">→ Déploiement VPS OVH · Nginx · SSL Let's Encrypt</li>
+              <li data-i18n="exp.e2.t2">→ Infrastructure : Docker Compose · Vagrant · PostgreSQL 16</li>
+              <li data-i18n="exp.e2.t3">→ Pipeline CI/CD complet sur GitLab (4 repos)</li>
+              <li data-i18n="exp.e2.t4">→ Gestion des runners, registry, volumes partagés</li>
             </ul>
           </div>
         </div>
@@ -547,8 +552,7 @@
     <div class="sec-header"><h2 data-i18n="edu.title">Formation</h2></div>
     <div class="edu-list">
       <div class="edu-card"><div><h3 data-i18n="edu.e1.title">BUT Informatique — Parcours DAC</h3><div class="edu-school" style="color:var(--blue);">IUT de Lille · Villeneuve d'Ascq</div><p data-i18n="edu.e1.desc">Déploiement d'Applications Communicantes et Sécurisées. Systèmes, réseaux, sécurité, DevOps.</p></div><span class="edu-year" style="border:1px solid rgba(14,165,233,0.3);background:rgba(14,165,233,0.08);color:var(--blue);">2023 — 2026</span></div>
-      <div class="edu-card"><div><h3 data-i18n="edu.e2.title">BTS CIEL — Cybersécurité, Informatique et Réseaux</h3><div class="edu-school" style="color:var(--purple);" data-i18n="edu.e2.school">Lycée technique · Nord</div><p data-i18n="edu.e2.desc">Expérience pratique en C/C++, Arduino et systèmes embarqués.</p></div><span class="edu-year" style="border:1px solid rgba(139,92,246,0.3);background:rgba(139,92,246,0.08);color:var(--purple);">2021 — 2023</span></div>
-      <div class="edu-card"><div><h3 data-i18n="edu.e3.title">🏅 Certification CCNA 2 — Switching, Routing & Wireless</h3><div class="edu-school" style="color:var(--cyan);">Cisco Networking Academy</div><p data-i18n="edu.e3.desc">Routage, commutation, VLANs, STP, EtherChannel, ACLs.</p></div><span class="edu-year" style="border:1px solid rgba(34,211,238,0.3);background:rgba(34,211,238,0.08);color:var(--cyan);" data-i18n="edu.e3.year">Obtenu</span></div>
+      <div class="edu-card"><div><h3 data-i18n="edu.e2.title">BTS CIEL — Cybersécurité, Informatique et Réseaux</h3><div class="edu-school" style="color:var(--purple);" data-i18n="edu.e2.school">Lycée technique · Roubaix</div><p data-i18n="edu.e2.desc">Expérience pratique en C/C++, Arduino et systèmes embarqués.</p></div><span class="edu-year" style="border:1px solid rgba(139,92,246,0.3);background:rgba(139,92,246,0.08);color:var(--purple);">2021 — 2023</span></div>
     </div>
   </div>
 </section>
@@ -598,14 +602,6 @@ window.addEventListener('scroll', () => {
 document.getElementById('burger').addEventListener('click', () => document.getElementById('nav-mobile').classList.toggle('open'));
 document.querySelectorAll('#nav-mobile a').forEach(a => a.addEventListener('click', () => document.getElementById('nav-mobile').classList.remove('open')));
 
-// ===================== THEME =====================
-let isDark = true;
-document.getElementById('theme-btn').addEventListener('click', () => {
-  isDark = !isDark;
-  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-  document.getElementById('theme-icon').textContent = isDark ? '☀️' : '🌙';
-});
-
 // ===================== I18N =====================
 const I18N = {
   fr: {
@@ -619,7 +615,7 @@ const I18N = {
     "about.atouts":"Mes Atouts","about.a1":"Technique","about.a2":"Autonomie","about.a3":"Rigueur",
     "skills.title":"Compétences Techniques","skills.sub":"Stack systèmes, réseaux et infrastructure",
     "skills.s1":"Systèmes","skills.s2":"Réseaux","skills.s3":"DevOps & Infra","skills.s4":"Développement","skills.s5":"Sécurité","skills.s6":"Outils & Méthodes",
-    "soft.title":"Comportement & Soft Skills","soft.sub":"Les compétences humaines qui font la différence","soft.level":"Niveau",
+    "soft.title":"Soft Skills","soft.sub":"Les compétences humaines qui font la différence","soft.level":"Niveau",
     "soft.s1.title":"Rigueur & Organisation","soft.s1.desc":"Structurer mes tâches, respecter les délais et maintenir une documentation claire.","soft.s1.lvl":"Avancé",
     "soft.s2.title":"Esprit d'Équipe","soft.s2.desc":"À l'aise dans les environnements collaboratifs. J'écoute, contribue et m'adapte.","soft.s2.lvl":"Avancé",
     "soft.s3.title":"Autonomie & Proactivité","soft.s3.desc":"Prendre des initiatives et livrer sans avoir besoin d'être constamment encadré.","soft.s3.lvl":"Confirmé",
@@ -633,10 +629,11 @@ const I18N = {
     "proj.p3.title":"E-commerce Pokémon TCG","proj.p3.desc":"Site e-commerce custom pour cartes Pokémon. Auth, Stripe, Prisma, Docker et CI/CD GitHub Actions.",
     "exp.title":"Expérience Professionnelle","exp.e1.date":"Mai 2024 — Juillet 2024","exp.e1.role":"Stage — Support Informatique N1/N2","exp.e1.dept":"Direction des Systèmes d'Information",
     "exp.e1.t1":"→ Support utilisateurs N1/N2 sur parc Windows","exp.e1.t2":"→ Administration Active Directory (comptes, OU, GPO)","exp.e1.t3":"→ Déploiement de postes via SCCM","exp.e1.t4":"→ Gestion des tickets incidents sous GLPI","exp.e1.t5":"→ Câblage réseau, remplacement de matériel",
-    "exp.e2.place":"IUT de Lille · Projet Universitaire","exp.e2.role":"Projet CI/CD Agile — groupe-13","exp.e2.dept":"BUT3 · IUT de Lille",
-    "exp.e2.t1":"→ Stack : React/Vite/TS · Spring Boot · PostgreSQL 16","exp.e2.t2":"→ Infrastructure : Vagrant + Docker Compose + Nginx","exp.e2.t3":"→ Pipeline CI/CD complet sur GitLab","exp.e2.t4":"→ Organisation Agile sur 4 repos GitLab",
+    "exp.academic_label":"Projets académiques",
+    "exp.e2.place":"IUT de Lille · SAE","exp.e2.role":"SAE — Infra CI/CD · groupe-13","exp.e2.dept":"BUT3 · IUT de Lille",
+    "exp.e2.t1":"→ Déploiement VPS OVH · Nginx · SSL Let's Encrypt","exp.e2.t2":"→ Infrastructure : Docker Compose · Vagrant · PostgreSQL 16","exp.e2.t3":"→ Pipeline CI/CD complet sur GitLab (4 repos)","exp.e2.t4":"→ Gestion des runners, registry, volumes partagés",
     "edu.title":"Formation","edu.e1.title":"BUT Informatique — Parcours DAC","edu.e1.desc":"Déploiement d'Applications Communicantes et Sécurisées. Systèmes, réseaux, sécurité, DevOps.",
-    "edu.e2.title":"BTS CIEL — Cybersécurité, Informatique et Réseaux","edu.e2.school":"Lycée technique · Nord","edu.e2.desc":"Expérience pratique en C/C++, Arduino et systèmes embarqués.",
+    "edu.e2.title":"BTS CIEL — Cybersécurité, Informatique et Réseaux","edu.e2.school":"Lycée technique · Roubaix","edu.e2.desc":"Expérience pratique en C/C++, Arduino et systèmes embarqués.",
     "edu.e3.title":"🏅 Certification CCNA 2 — Switching, Routing & Wireless","edu.e3.desc":"Routage, commutation, VLANs, STP, EtherChannel, ACLs.","edu.e3.year":"Obtenu",
     "footer.top":"↑ Haut de page","footer.made":"Conçu avec passion et code."
   },
@@ -651,7 +648,7 @@ const I18N = {
     "about.atouts":"Key Strengths","about.a1":"Technical","about.a2":"Autonomy","about.a3":"Rigor",
     "skills.title":"Technical Skills","skills.sub":"Systems, networking and infrastructure stack",
     "skills.s1":"Systems","skills.s2":"Networks","skills.s3":"DevOps & Infra","skills.s4":"Development","skills.s5":"Security","skills.s6":"Tools & Methods",
-    "soft.title":"Behavior & Soft Skills","soft.sub":"Human skills that make the difference","soft.level":"Level",
+    "soft.title":"Soft Skills","soft.sub":"Human skills that make the difference","soft.level":"Level",
     "soft.s1.title":"Rigor & Organization","soft.s1.desc":"Structure my tasks, meet deadlines and maintain clear documentation.","soft.s1.lvl":"Advanced",
     "soft.s2.title":"Team Spirit","soft.s2.desc":"Comfortable in collaborative environments. I listen, contribute and adapt.","soft.s2.lvl":"Advanced",
     "soft.s3.title":"Autonomy & Proactivity","soft.s3.desc":"Take initiative and deliver without constant supervision.","soft.s3.lvl":"Confirmed",
@@ -665,8 +662,9 @@ const I18N = {
     "proj.p3.title":"Pokémon TCG E-commerce","proj.p3.desc":"Custom e-commerce for Pokémon cards. Auth, Stripe, Prisma, Docker and CI/CD GitHub Actions.",
     "exp.title":"Professional Experience","exp.e1.date":"May 2024 — July 2024","exp.e1.role":"Internship — IT Support N1/N2","exp.e1.dept":"IT Department",
     "exp.e1.t1":"→ N1/N2 user support on Windows workstations","exp.e1.t2":"→ Active Directory administration (accounts, OU, GPO)","exp.e1.t3":"→ Workstation deployment via SCCM","exp.e1.t4":"→ Incident ticket management with GLPI","exp.e1.t5":"→ Network cabling, hardware replacement",
-    "exp.e2.place":"IUT de Lille · University Project","exp.e2.role":"Agile CI/CD Project — group-13","exp.e2.dept":"3rd year · IUT de Lille",
-    "exp.e2.t1":"→ Stack: React/Vite/TS · Spring Boot · PostgreSQL 16","exp.e2.t2":"→ Infrastructure: Vagrant + Docker Compose + Nginx","exp.e2.t3":"→ Full CI/CD pipeline on GitLab","exp.e2.t4":"→ Agile organization across 4 GitLab repos",
+    "exp.academic_label":"Academic projects",
+    "exp.e2.place":"IUT de Lille · SAE","exp.e2.role":"SAE — Infra CI/CD · group-13","exp.e2.dept":"3rd year · IUT de Lille",
+    "exp.e2.t1":"→ VPS OVH deployment · Nginx · SSL Let's Encrypt","exp.e2.t2":"→ Infrastructure: Docker Compose · Vagrant · PostgreSQL 16","exp.e2.t3":"→ Full CI/CD pipeline on GitLab (4 repos)","exp.e2.t4":"→ Runners, registry, shared volumes management",
     "edu.title":"Education","edu.e1.title":"CS Degree (BUT) — DAC Track","edu.e1.desc":"Communicating & Secure Application Deployment. Systems, networking, security, DevOps.",
     "edu.e2.title":"BTS CIEL — Cybersecurity, IT and Networks","edu.e2.school":"Technical high school · Nord","edu.e2.desc":"Hands-on C/C++, Arduino and embedded systems.",
     "edu.e3.title":"🏅 CCNA 2 Certification — Switching, Routing & Wireless","edu.e3.desc":"Routing, switching, VLANs, STP, EtherChannel, ACLs.","edu.e3.year":"Obtained",
@@ -817,11 +815,7 @@ document.querySelectorAll('.soft-card').forEach(el => barObs.observe(el));
 <div class="tc-m">  <span class="tc-c">contact</span>     — Contact</div>
 <div class="tc-m">  <span class="tc-c">stage</span>       — ${fr?'Stage recherché':'Internship info'}</div>
 <div class="tc-m">  <span class="tc-c">ls</span>          — ${fr?'Sections du portfolio':'Portfolio sections'}</div>
-<div class="tc-m">  <span class="tc-c">neofetch</span>    — ${fr?'Infos système':'System info'}</div>
-<div class="tc-m">  <span class="tc-c">ping</span>        — Ping mohane.dev</div>
-<div class="tc-m">  <span class="tc-c">sudo</span>        — ${fr?'Élévation de privilèges...':'Privilege escalation...'}</div>
-<div class="tc-m">  <span class="tc-c">cat cv.pdf</span>  — ${fr?'Afficher le CV':'Show CV'}</div>
-<div class="tc-m">  <span class="tc-c">uptime</span>      — ${fr?'Temps de fonctionnement':'System uptime'}</div>
+<div class="tc-m">  <span class="tc-c">cat cv.pdf</span>  — ${fr?'Ouvrir le CV':'Open CV'}</div>
 <div class="tc-m">  <span class="tc-c">github</span>      — ${fr?'Ouvrir GitHub':'Open GitHub'}</div>
 <div class="tc-m">  <span class="tc-c">clear</span>       — ${fr?'Vider le terminal':'Clear terminal'}</div>`;
     },
@@ -836,70 +830,10 @@ document.querySelectorAll('.soft-card').forEach(el => barObs.observe(el));
 <div><span class="tc-d">Status   : </span><span class="tc-g">🟢 ${fr?'Disponible — Stage dès mi-mars 2026':'Available — Internship from mid-March 2026'}</span></div>`;
     },
 
-    neofetch: () => {
-      const fr = currentLang === 'fr';
-      const now = new Date();
-      const uptime = Math.floor((now - new Date(now.getFullYear(), 0, 1)) / 86400000);
-      return `<div style="display:flex;gap:20px;margin:4px 0;">
-<pre class="tc-b" style="line-height:1.4;font-size:11px;">  ███╗   ███╗
-  ████╗ ████║
-  ██╔████╔██║
-  ██║╚██╔╝██║
-  ██║ ╚═╝ ██║
-  ╚═╝     ╚═╝</pre>
-<div style="padding-top:2px;">
-<div><span class="tc-c">mohane</span><span class="tc-d">@</span><span class="tc-c">portfolio</span></div>
-<div class="tc-d">──────────────────</div>
-<div><span class="tc-b">OS</span><span class="tc-d">:         </span><span class="tc-w">Debian 12 (Bookworm)</span></div>
-<div><span class="tc-b">Kernel</span><span class="tc-d">:    </span><span class="tc-w">6.1.0-amd64</span></div>
-<div><span class="tc-b">Shell</span><span class="tc-d">:     </span><span class="tc-w">bash 5.2.15</span></div>
-<div><span class="tc-b">Uptime</span><span class="tc-d">:    </span><span class="tc-w">${uptime} ${fr?'jours':'days'}</span></div>
-<div><span class="tc-b">CPU</span><span class="tc-d">:       </span><span class="tc-w">Intel Core i5 × 8</span></div>
-<div><span class="tc-b">RAM</span><span class="tc-d">:       </span><span class="tc-w">16GB / 16GB</span></div>
-<div><span class="tc-b">Tools</span><span class="tc-d">:     </span><span class="tc-w">Docker, Ansible, Vagrant</span></div>
-<div><span class="tc-b">Certs</span><span class="tc-d">:     </span><span class="tc-y">CCNA 2 ✓</span></div>
-<div style="margin-top:6px;">
-  <span style="background:#ef4444;padding:0 6px;">&nbsp;</span>
-  <span style="background:#f59e0b;padding:0 6px;">&nbsp;</span>
-  <span style="background:#22c55e;padding:0 6px;">&nbsp;</span>
-  <span style="background:#0ea5e9;padding:0 6px;">&nbsp;</span>
-  <span style="background:#8b5cf6;padding:0 6px;">&nbsp;</span>
-  <span style="background:#ec4899;padding:0 6px;">&nbsp;</span>
-</div>
-</div></div>`;
-    },
-
-    ping: () => {
-      const fr = currentLang === 'fr';
-      return `<div class="tc-m">PING mohane.dev (${fr?'portfolio':'portfolio'}) 56(84) ${fr?'octets de données':'bytes of data'}.</div>
-<div class="tc-g">64 bytes from mohane.dev: icmp_seq=1 ttl=64 time=0.42 ms</div>
-<div class="tc-g">64 bytes from mohane.dev: icmp_seq=2 ttl=64 time=0.38 ms</div>
-<div class="tc-g">64 bytes from mohane.dev: icmp_seq=3 ttl=64 time=0.41 ms</div>
-<div class="tc-m" style="margin-top:4px;">--- mohane.dev ${fr?'statistiques ping':'ping statistics'} ---</div>
-<div class="tc-g">3 ${fr?'paquets transmis, 3 reçus, 0% perte':'packets transmitted, 3 received, 0% packet loss'}</div>
-<div class="tc-m">rtt min/avg/max = 0.38/0.40/0.42 ms</div>`;
-    },
-
-    sudo: () => {
-      const fr = currentLang === 'fr';
-      return `<div class="tc-m">[sudo] ${fr?'mot de passe pour':'password for'} mohane:</div>
-<div class="tc-r">mohane ${fr?'n\'est pas dans le fichier des sudoers.':'is not in the sudoers file.'}</div>
-<div class="tc-r">${fr?'Cet incident sera signalé.':'This incident will be reported.'}</div>
-<div class="tc-o" style="margin-top:4px;">${fr?'(jk, pas de panique 😄)':'(jk, don\'t panic 😄)'}</div>`;
-    },
-
     'cat cv.pdf': () => {
       const fr = currentLang === 'fr';
       return `<div class="tc-m">cat: cv.pdf: ${fr?'fichier binaire — ouverture dans le navigateur...':'binary file — opening in browser...'}</div>
-<div class="tc-g">${fr?'Ouverture de CV_Mohane.pdf…':'Opening CV_Mohane.pdf…'}</div>`;
-    },
-
-    uptime: () => {
-      const now = new Date();
-      const d = Math.floor((now - new Date(now.getFullYear(), 0, 1)) / 86400000);
-      const h = now.getHours(), m = now.getMinutes();
-      const fr = currentLang === 'fr';
-      return `<div class="tc-w">${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}  up ${d} ${fr?'jours':'days'},  ${h}:${String(m).padStart(2,'0')},  1 ${fr?'utilisateur connecté':'user logged in'},  load average: 0.12, 0.18, 0.14</div>`;
+<div class="tc-g">${fr?'Ouverture de CV_BOUMEDRAR_MOHANE.pdf…':'Opening CV_BOUMEDRAR_MOHANE.pdf…'}</div>`;
     },
 
     skills: () => `<div class="tc-g" style="margin-bottom:2px;">🖥️  ${currentLang==='fr'?'Systèmes':'Systems'}</div>
@@ -928,11 +862,12 @@ document.querySelectorAll('.soft-card').forEach(el => barObs.observe(el));
 <div class="tc-m" style="margin-bottom:5px;">   Next.js · PostgreSQL · Stripe · Docker</div>
 <div class="tc-d">→ <a href="https://github.com/Mbkd59" target="_blank" style="color:var(--blue);">github.com/Mbkd59</a></div>`,
 
-    experience: () => `<div class="tc-c" style="margin-bottom:5px;">${currentLang==='fr'?'Expériences :':'Experience:'}</div>
+    experience: () => `<div class="tc-c" style="margin-bottom:5px;">${currentLang==='fr'?'Expérience & Projets :':'Experience & Projects:'}</div>
 <div><span class="tc-g">CHU de Roubaix</span> · <span class="tc-d">${currentLang==='fr'?'Mai–Juil 2024':'May–Jul 2024'}</span></div>
 <div class="tc-m" style="margin-bottom:6px;">  ${currentLang==='fr'?'Stage N1/N2 · SCCM · GLPI · Active Directory':'Internship N1/N2 · SCCM · GLPI · Active Directory'}</div>
-<div><span class="tc-g">Projet Agile CI/CD</span> · <span class="tc-d">2024–2026</span></div>
-<div class="tc-m">  BUT3 · Docker · Vagrant · GitLab · React · Spring Boot</div>`,
+<div class="tc-d" style="margin-bottom:3px;">${currentLang==='fr'?'— Projets académiques —':'— Academic projects —'}</div>
+<div><span class="tc-p">SAE — Infra CI/CD</span> · <span class="tc-d">2024–2026</span></div>
+<div class="tc-m">  ${currentLang==='fr'?'VPS OVH · Docker Compose · Vagrant · GitLab CI/CD':'VPS OVH · Docker Compose · Vagrant · GitLab CI/CD'}</div>`,
 
     contact: () => `<div class="tc-c" style="margin-bottom:5px;">Contact :</div>
 <div class="tc-m">  📧  <a href="mailto:mohane.boumedrar.etu@univ-lille.fr" style="color:var(--blue);">mohane.boumedrar.etu@univ-lille.fr</a></div>
@@ -972,15 +907,9 @@ document.querySelectorAll('.soft-card').forEach(el => barObs.observe(el));
 
     if (trimmed.toLowerCase() === 'clear') { body.innerHTML = ''; return; }
 
-    // special: sudo rm -rf / etc
-    if (trimmed.toLowerCase().startsWith('sudo rm')) {
-      const fr = currentLang === 'fr';
-      print(`<span class="tc-r">${fr?'Uhh... non. On va éviter ça.':'Uhh... no. Let\'s not do that.'}</span> 🙂`);
-      return;
-    }
     if (trimmed.toLowerCase() === 'cat cv.pdf') {
       print(CMDS['cat cv.pdf']());
-      window.open('CV_Mohane.pdf','_blank');
+      window.open('CV_BOUMEDRAR_MOHANE.pdf','_blank');
       return;
     }
 
