@@ -98,8 +98,8 @@
   #term-window {
     position:fixed;
     left:60px; bottom:40px;
-    width:580px; height:380px;
-    min-width:300px; min-height:200px;
+    width:min(580px, calc(100vw - 70px)); height:380px;
+    min-width:280px; min-height:200px;
     z-index:500;
     display:none;
     flex-direction:column;
@@ -311,23 +311,106 @@
   footer p{font-size:13px;color:var(--dim);margin-bottom:4px;}
 
   /* ===================== RESPONSIVE ===================== */
+  /* ===================== RESPONSIVE ===================== */
+
+  /* Tablette */
   @media(max-width:960px){
-    .nav-links{display:none;} .nav-burger{display:block;}
-    .about-grid{grid-template-columns:1fr;}
-    .skills-grid{grid-template-columns:1fr 1fr;}
-    .soft-grid{grid-template-columns:1fr 1fr;}
-    .projects-grid{grid-template-columns:1fr 1fr;}
-    .timeline-line{display:none;}
-    .timeline-entry{grid-template-columns:1fr;gap:8px;}
-    .tl-meta{text-align:left;padding-right:0;}
-    .tl-card-wrap{padding-left:0;}
-    .tl-dot{display:none;}
+    .nav-links { display:none; }
+    .nav-burger { display:block; }
+    .about-grid { grid-template-columns:1fr; }
+    .skills-grid { grid-template-columns:1fr 1fr; }
+    .soft-grid { grid-template-columns:1fr 1fr !important; }
+    .projects-grid { grid-template-columns:1fr 1fr; }
+    .timeline-line { display:none; }
+    .timeline-entry { grid-template-columns:1fr; gap:8px; }
+    .tl-meta { text-align:left; padding-right:0; }
+    .tl-card-wrap { padding-left:0; }
+    .tl-dot { display:none; }
+    .section-pad { padding:60px 0; }
+    .hero-content { max-width:100%; }
   }
+
+  /* Mobile */
   @media(max-width:600px){
-    .skills-grid,.soft-grid,.projects-grid{grid-template-columns:1fr;}
-    .hero-name{font-size:36px;}
-    .stats-grid{grid-template-columns:1fr 1fr;}
-    #cmd-trigger{display:none;}
+    /* Hide CMD terminal button on mobile */
+    #cmd-trigger { display:none; }
+
+    /* Container padding */
+    .container { padding:0 16px; }
+
+    /* Typography */
+    .hero-name { font-size:38px; letter-spacing:-0.01em; }
+    .hero-sub  { font-size:16px; }
+    .hero-desc { font-size:14px; }
+    .sec-header h2 { font-size:26px; }
+    .section-pad { padding:52px 0; }
+
+    /* Buttons */
+    .btn-row { flex-direction:column; gap:10px; }
+    .btn-primary, .btn-secondary { width:100%; justify-content:center; padding:13px 20px; font-size:14px; }
+
+    /* Grids → 1 colonne */
+    .skills-grid,
+    .projects-grid { grid-template-columns:1fr; }
+
+    /* Soft skills → 1 colonne sur mobile */
+    .soft-grid { grid-template-columns:1fr !important; }
+
+    /* Stats */
+    .stats-grid { grid-template-columns:1fr 1fr; gap:10px; }
+
+    /* Atouts */
+    .atouts-grid { grid-template-columns:repeat(3,1fr); gap:8px; }
+    .atout { padding:12px 8px; }
+    .atout-icon { font-size:18px; }
+    .atout-label { font-size:11px; }
+
+    /* About */
+    .about-grid { gap:28px; }
+
+    /* Réflexive grid → 1 col */
+    .reflexive-grid { grid-template-columns:1fr !important; }
+
+    /* Cards padding */
+    .skill-card,
+    .proj-body,
+    .card { padding:16px; }
+
+    .soft-card { padding:20px 16px; }
+
+    /* Education */
+    .edu-card {
+      flex-direction:column;
+      align-items:flex-start;
+      gap:10px;
+    }
+    .edu-year { align-self:flex-start; }
+
+    /* Timeline */
+    .timeline-entry { margin-bottom:24px; }
+
+    /* Nav logo */
+    .nav-logo { font-size:17px; }
+
+    /* Footer */
+    .footer-links { flex-wrap:wrap; gap:16px; justify-content:center; }
+
+    /* Scroll bar stays */
+    #scroll-bar { height:2px; }
+
+    /* Prevent horizontal overflow */
+    body { overflow-x:hidden; }
+    * { max-width:100%; }
+    pre { overflow-x:auto; font-size:10px; }
+  }
+
+  /* Très petits écrans */
+  @media(max-width:380px){
+    .hero-name { font-size:32px; }
+    .btn-primary, .btn-secondary { font-size:13px; padding:11px 16px; }
+    .atouts-grid { grid-template-columns:1fr 1fr 1fr; }
+    .stats-grid  { grid-template-columns:1fr 1fr; }
+    .nav-inner   { padding:0 12px; }
   }
   </style>
 </head>
@@ -478,16 +561,186 @@
 <!-- ==================== SOFT SKILLS ==================== -->
 <section id="softskills" class="section-pad section-alt">
   <div class="container">
-    <div class="sec-header"><h2 data-i18n="soft.title">Soft Skills</h2><p data-i18n="soft.sub">Les compétences humaines qui font la différence</p></div>
-    <div class="soft-grid">
-      <div class="soft-card cb"><div class="soft-icon cb">🎯</div><h3 data-i18n="soft.s1.title">Rigueur & Organisation</h3><p data-i18n="soft.s1.desc">Structurer mes tâches, respecter les délais et maintenir une documentation claire.</p><div class="bar-label"><span data-i18n="soft.level">Niveau</span><span style="color:var(--blue);font-family:'JetBrains Mono',monospace;" data-i18n="soft.s1.lvl">Avancé</span></div><div class="bar-bg"><div class="bar-fill" style="background:linear-gradient(90deg,var(--blue),#38bdf8);width:88%;"></div></div></div>
-      <div class="soft-card cp"><div class="soft-icon cp">🤝</div><h3 data-i18n="soft.s2.title">Esprit d'Équipe</h3><p data-i18n="soft.s2.desc">À l'aise dans les environnements collaboratifs. J'écoute, contribue et m'adapte.</p><div class="bar-label"><span data-i18n="soft.level">Niveau</span><span style="color:#c084fc;font-family:'JetBrains Mono',monospace;" data-i18n="soft.s2.lvl">Avancé</span></div><div class="bar-bg"><div class="bar-fill" style="background:linear-gradient(90deg,var(--purple),#c084fc);width:85%;"></div></div></div>
-      <div class="soft-card cc"><div class="soft-icon cc">⚡</div><h3 data-i18n="soft.s3.title">Autonomie & Proactivité</h3><p data-i18n="soft.s3.desc">Prendre des initiatives et livrer sans avoir besoin d'être constamment encadré.</p><div class="bar-label"><span data-i18n="soft.level">Niveau</span><span style="color:var(--cyan);font-family:'JetBrains Mono',monospace;" data-i18n="soft.s3.lvl">Confirmé</span></div><div class="bar-bg"><div class="bar-fill" style="background:linear-gradient(90deg,#06b6d4,var(--cyan));width:82%;"></div></div></div>
-      <div class="soft-card cg"><div class="soft-icon cg">🔍</div><h3 data-i18n="soft.s4.title">Curiosité Technique</h3><p data-i18n="soft.s4.desc">Toujours en veille. J'apprends vite et j'aime comprendre les choses en profondeur.</p><div class="bar-label"><span data-i18n="soft.level">Niveau</span><span style="color:#4ade80;font-family:'JetBrains Mono',monospace;" data-i18n="soft.s4.lvl">Élevé</span></div><div class="bar-bg"><div class="bar-fill" style="background:linear-gradient(90deg,#10b981,#34d399);width:90%;"></div></div></div>
-      <div class="soft-card cb"><div class="soft-icon cb">💬</div><h3 data-i18n="soft.s5.title">Communication Claire</h3><p data-i18n="soft.s5.desc">Expliquer des sujets techniques à des interlocuteurs non-techs. Rédaction de docs.</p><div class="bar-label"><span data-i18n="soft.level">Niveau</span><span style="color:var(--blue);font-family:'JetBrains Mono',monospace;" data-i18n="soft.s5.lvl">Bon</span></div><div class="bar-bg"><div class="bar-fill" style="background:linear-gradient(90deg,var(--blue),#38bdf8);width:78%;"></div></div></div>
-      <div class="soft-card cp"><div class="soft-icon cp">🔄</div><h3 data-i18n="soft.s6.title">Adaptabilité</h3><p data-i18n="soft.s6.desc">Passage rapide Windows/Linux, contexte scolaire et hospitalier. À l'aise avec l'incertitude.</p><div class="bar-label"><span data-i18n="soft.level">Niveau</span><span style="color:#c084fc;font-family:'JetBrains Mono',monospace;" data-i18n="soft.s6.lvl">Confirmé</span></div><div class="bar-bg"><div class="bar-fill" style="background:linear-gradient(90deg,var(--purple),#c084fc);width:83%;"></div></div></div>
+    <div class="sec-header">
+      <h2>Soft Skills</h2>
+      <p>Compétences comportementales — référentiel BUT3 Communication</p>
     </div>
-    <div class="quote-box"><div style="font-size:36px;margin-bottom:16px;">💡</div><blockquote data-i18n="soft.quote">"Je ne cherche pas juste à faire fonctionner les choses — je cherche à comprendre pourquoi elles fonctionnent, pour mieux anticiper quand elles ne fonctionneront plus."</blockquote><div class="quote-author">— Mohane Boumedrar</div></div>
+
+    <!-- ── CATÉGORIE 1 : MANIÈRE D'ÊTRE ── -->
+    <div style="margin-bottom:48px;">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px;">
+        <div style="width:36px;height:36px;border-radius:10px;background:rgba(14,165,233,0.12);display:flex;align-items:center;justify-content:center;font-size:18px;">🧠</div>
+        <div>
+          <h3 style="font-size:18px;font-weight:700;color:var(--text);">Manière d'être</h3>
+          <p style="font-size:12px;color:var(--dim);font-family:'JetBrains Mono',monospace;">Posture · Stress · Adaptabilité · Engagement · Confiance</p>
+        </div>
+      </div>
+      <div class="soft-grid" style="grid-template-columns:repeat(3,1fr);">
+
+        <div class="soft-card cb">
+          <div class="soft-icon cb">🏥</div>
+          <h3>Posture professionnelle</h3>
+          <p>Au CHU de Roubaix, j'ai rapidement adopté les codes d'un environnement hospitalier : ponctualité, tenue, discrétion sur les données patients. Face aux soignants peu à l'aise avec l'outil informatique, j'ai appris à adapter mon attitude — rester calme, patient et professionnel même sous pression.</p>
+          <div class="bar-label"><span>Niveau</span><span style="color:var(--blue);font-family:'JetBrains Mono',monospace;">Confirmé</span></div>
+          <div class="bar-bg"><div class="bar-fill on" style="background:linear-gradient(90deg,var(--blue),#38bdf8);width:82%;"></div></div>
+        </div>
+
+        <div class="soft-card cb">
+          <div class="soft-icon cb">⚖️</div>
+          <h3>Gestion du stress</h3>
+          <p>Lors d'incidents réseau critiques (imprimantes tombées en pleine consultation médicale), j'ai géré la pression sans paniquer : diagnostic rapide, communication claire avec le responsable, résolution dans un délai court. J'ai compris que le stress est un signal à canaliser, pas à subir.</p>
+          <div class="bar-label"><span>Niveau</span><span style="color:var(--blue);font-family:'JetBrains Mono',monospace;">En développement</span></div>
+          <div class="bar-bg"><div class="bar-fill on" style="background:linear-gradient(90deg,var(--blue),#38bdf8);width:72%;"></div></div>
+        </div>
+
+        <div class="soft-card cc">
+          <div class="soft-icon cc">🔄</div>
+          <h3>Adaptabilité</h3>
+          <p>Passer d'un environnement scolaire à un SI hospitalier sous contraintes réglementaires (RGPD, sécurité des données médicales) a demandé une adaptation rapide. J'ai aussi dû m'adapter à des utilisateurs très variés — chirurgiens, administratifs, cadres de santé — avec des besoins et niveaux techniques très différents.</p>
+          <div class="bar-label"><span>Niveau</span><span style="color:var(--cyan);font-family:'JetBrains Mono',monospace;">Avancé</span></div>
+          <div class="bar-bg"><div class="bar-fill on" style="background:linear-gradient(90deg,#06b6d4,var(--cyan));width:86%;"></div></div>
+        </div>
+
+        <div class="soft-card cg">
+          <div class="soft-icon cg">🎯</div>
+          <h3>Engagement & Responsabilités</h3>
+          <p>On m'a rapidement confié des tâches en autonomie : déploiement de postes SCCM, gestion des tickets GLPI. J'ai pris ces responsabilités au sérieux, documentant chaque intervention. Ce sens du devoir m'a valu la confiance de mon tuteur qui m'a laissé gérer certains utilisateurs seul dès la 2e semaine.</p>
+          <div class="bar-label"><span>Niveau</span><span style="color:#4ade80;font-family:'JetBrains Mono',monospace;">Avancé</span></div>
+          <div class="bar-bg"><div class="bar-fill on" style="background:linear-gradient(90deg,#10b981,#34d399);width:88%;"></div></div>
+        </div>
+
+        <div class="soft-card cg">
+          <div class="soft-icon cg">💪</div>
+          <h3>Confiance en soi</h3>
+          <p>J'ai identifié un manque de confiance initial face aux professionnels expérimentés. Mais chaque ticket résolu et chaque retour positif d'un utilisateur ont construit ma légitimité. J'ai appris que la confiance vient de l'action : oser proposer une solution plutôt qu'attendre validation systématique.</p>
+          <div class="bar-label"><span>Niveau</span><span style="color:#4ade80;font-family:'JetBrains Mono',monospace;">En progression</span></div>
+          <div class="bar-bg"><div class="bar-fill on" style="background:linear-gradient(90deg,#10b981,#34d399);width:75%;"></div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── CATÉGORIE 2 : MANIÈRE DE COMMUNIQUER ── -->
+    <div style="margin-bottom:48px;">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px;">
+        <div style="width:36px;height:36px;border-radius:10px;background:rgba(139,92,246,0.12);display:flex;align-items:center;justify-content:center;font-size:18px;">💬</div>
+        <div>
+          <h3 style="font-size:18px;font-weight:700;color:var(--text);">Manière de communiquer</h3>
+          <p style="font-size:12px;color:var(--dim);font-family:'JetBrains Mono',monospace;">Oral · Écrit · Écoute · Assertivité · Feedback</p>
+        </div>
+      </div>
+      <div class="soft-grid" style="grid-template-columns:repeat(3,1fr);">
+
+        <div class="soft-card cp">
+          <div class="soft-icon cp">🗣️</div>
+          <h3>Communication professionnelle</h3>
+          <p>J'ai appris à vulgariser : expliquer à une infirmière pourquoi son poste ne se connecte plus au réseau sans jargon technique. À l'écrit, j'ai rédigé des comptes-rendus d'interventions clairs dans GLPI, lus par toute l'équipe DSI. La précision et la concision sont devenues des réflexes.</p>
+          <div class="bar-label"><span>Niveau</span><span style="color:#c084fc;font-family:'JetBrains Mono',monospace;">Bon</span></div>
+          <div class="bar-bg"><div class="bar-fill on" style="background:linear-gradient(90deg,var(--purple),#c084fc);width:80%;"></div></div>
+        </div>
+
+        <div class="soft-card cp">
+          <div class="soft-icon cp">👂</div>
+          <h3>Écoute & Reformulation</h3>
+          <p>Face aux utilisateurs en difficulté, j'ai développé l'écoute active : laisser l'interlocuteur finir, reformuler le problème avant d'agir ("Si je comprends bien, votre session se ferme toute seule dès que…"). Cette habitude a évité des interventions inutiles et renforcé la confiance des utilisateurs.</p>
+          <div class="bar-label"><span>Niveau</span><span style="color:#c084fc;font-family:'JetBrains Mono',monospace;">Avancé</span></div>
+          <div class="bar-bg"><div class="bar-fill on" style="background:linear-gradient(90deg,var(--purple),#c084fc);width:84%;"></div></div>
+        </div>
+
+        <div class="soft-card cp">
+          <div class="soft-icon cp">🎯</div>
+          <h3>Assertivité & Feedbacks</h3>
+          <p>J'ai appris à exprimer un désaccord respectueusement — par exemple proposer une solution alternative quand une procédure me semblait sous-optimale. Sur les feedbacks de mon tuteur, j'ai pris l'habitude de noter les remarques et de les intégrer dès l'intervention suivante plutôt que de les défendre.</p>
+          <div class="bar-label"><span>Niveau</span><span style="color:#c084fc;font-family:'JetBrains Mono',monospace;">En développement</span></div>
+          <div class="bar-bg"><div class="bar-fill on" style="background:linear-gradient(90deg,var(--purple),#c084fc);width:74%;"></div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── CATÉGORIE 3 : MANIÈRE DE TRAVAILLER AVEC LES AUTRES ── -->
+    <div style="margin-bottom:48px;">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px;">
+        <div style="width:36px;height:36px;border-radius:10px;background:rgba(6,182,212,0.12);display:flex;align-items:center;justify-content:center;font-size:18px;">🤝</div>
+        <div>
+          <h3 style="font-size:18px;font-weight:700;color:var(--text);">Manière de travailler avec les autres</h3>
+          <p style="font-size:12px;color:var(--dim);font-family:'JetBrains Mono',monospace;">Équipe · Coopération · Désaccords · Collectif · Initiative</p>
+        </div>
+      </div>
+      <div class="soft-grid" style="grid-template-columns:repeat(3,1fr);">
+
+        <div class="soft-card cc">
+          <div class="soft-icon cc">👥</div>
+          <h3>Travail en équipe & Coopération</h3>
+          <p>L'équipe DSI du CHU fonctionnait avec une forte culture du partage d'information. J'ai adopté ce réflexe : documenter mes interventions pour que mes collègues puissent reprendre un ticket sans tout réexpliquer. En SAE BUT3, j'ai assuré la cohérence de l'infra entre 4 repos GitLab en coordination constante avec l'équipe.</p>
+          <div class="bar-label"><span>Niveau</span><span style="color:var(--cyan);font-family:'JetBrains Mono',monospace;">Avancé</span></div>
+          <div class="bar-bg"><div class="bar-fill on" style="background:linear-gradient(90deg,#06b6d4,var(--cyan));width:86%;"></div></div>
+        </div>
+
+        <div class="soft-card cc">
+          <div class="soft-icon cc">⚡</div>
+          <h3>Gestion des désaccords</h3>
+          <p>Face à un collègue qui avait une approche différente pour configurer un poste, j'ai choisi d'observer d'abord, comparer les résultats, puis discuter. Plutôt que d'imposer, j'ai proposé. Ce positionnement m'a appris que le désaccord technique peut être une opportunité d'apprentissage mutuel.</p>
+          <div class="bar-label"><span>Niveau</span><span style="color:var(--cyan);font-family:'JetBrains Mono',monospace;">Confirmé</span></div>
+          <div class="bar-bg"><div class="bar-fill on" style="background:linear-gradient(90deg,#06b6d4,var(--cyan));width:78%;"></div></div>
+        </div>
+
+        <div class="soft-card cc">
+          <div class="soft-icon cc">🚀</div>
+          <h3>Prise d'initiative</h3>
+          <p>Sans qu'on me le demande, j'ai proposé d'automatiser une tâche répétitive de remise à zéro de sessions utilisateurs via un script PowerShell. Mon tuteur a validé la démarche. Cette expérience m'a confirmé que l'initiative, quand elle est cadrée et communiquée, est perçue comme un atout, pas une insubordination.</p>
+          <div class="bar-label"><span>Niveau</span><span style="color:var(--cyan);font-family:'JetBrains Mono',monospace;">Confirmé</span></div>
+          <div class="bar-bg"><div class="bar-fill on" style="background:linear-gradient(90deg,#06b6d4,var(--cyan));width:80%;"></div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── ANALYSE RÉFLEXIVE ── -->
+    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:20px;padding:40px;max-width:900px;margin:0 auto;">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:28px;">
+        <div style="width:44px;height:44px;border-radius:12px;background:rgba(14,165,233,0.12);display:flex;align-items:center;justify-content:center;font-size:22px;">🔎</div>
+        <div>
+          <h3 style="font-size:20px;font-weight:700;">Analyse réflexive</h3>
+          <p style="font-size:12px;color:var(--dim);font-family:'JetBrains Mono',monospace;">Connaissance et conscience de soi</p>
+        </div>
+      </div>
+
+      <div class="reflexive-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px;">
+        <div style="background:rgba(74,222,128,0.06);border:1px solid rgba(74,222,128,0.2);border-radius:14px;padding:20px;">
+          <div style="font-size:14px;font-weight:700;color:#4ade80;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+            <span>✅</span> Points forts identifiés
+          </div>
+          <ul style="font-size:13px;color:var(--muted);list-style:none;display:flex;flex-direction:column;gap:8px;">
+            <li>→ Capacité d'adaptation rapide à un nouvel environnement</li>
+            <li>→ Fiabilité et rigueur dans le suivi des tickets</li>
+            <li>→ Curiosité technique qui pousse à chercher avant de demander</li>
+            <li>→ Sens du service et orientation utilisateur naturelle</li>
+          </ul>
+        </div>
+        <div style="background:rgba(251,146,60,0.06);border:1px solid rgba(251,146,60,0.2);border-radius:14px;padding:20px;">
+          <div style="font-size:14px;font-weight:700;color:#fb923c;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+            <span>📈</span> Axes de progrès
+          </div>
+          <ul style="font-size:13px;color:var(--muted);list-style:none;display:flex;flex-direction:column;gap:8px;">
+            <li>→ Affirmer davantage mes positions face aux seniors</li>
+            <li>→ Mieux gérer les situations de pression simultanée</li>
+            <li>→ Développer une communication plus proactive sur l'avancement</li>
+            <li>→ Renforcer ma capacité à déléguer et faire confiance</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="background:rgba(14,165,233,0.05);border:1px solid rgba(14,165,233,0.15);border-radius:14px;padding:20px;">
+        <div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:10px;">💡 Ce que cette expérience m'a appris sur moi</div>
+        <p style="font-size:14px;color:var(--muted);line-height:1.75;">
+          Ce stage au CHU m'a révélé que mon fonctionnement naturel est celui d'un <strong style="color:var(--text);">résolveur de problèmes discret</strong> : j'observe, j'analyse, puis j'agis. Ce mode de fonctionnement est efficace en technique, mais m'a aussi appris que dans un collectif, 
+          <strong style="color:var(--text);">la visibilité de son travail est aussi importante que sa qualité</strong>. J'ai compris que l'environnement professionnel attend non seulement des résultats, mais aussi une capacité à rendre compte, à communiquer l'avancement et à s'inscrire dans une dynamique d'équipe visible. 
+          Mon axe de développement prioritaire : passer de <em>"je fais et je me tais"</em> à <em>"je fais, je communique et j'échange"</em>.
+        </p>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -845,13 +1098,14 @@ document.querySelectorAll('.soft-card').forEach(el => barObs.observe(el));
 <div class="tc-g" style="margin-bottom:2px;">💻  Dev</div>
 <div class="tc-m">   Python, Bash, SQL, JavaScript, Next.js</div>`,
 
-    softskills: () => `<div class="tc-c" style="margin-bottom:5px;">Soft skills :</div>
-<div class="tc-m">  🎯  <span class="tc-w">${currentLang==='fr'?'Rigueur':'Rigor'}</span>             <span class="tc-b">████████</span><span class="tc-d">░░</span>  88%</div>
-<div class="tc-m">  🤝  <span class="tc-w">${currentLang==='fr'?'Esprit d\'équipe':'Team Spirit'}</span>    <span class="tc-p">████████</span><span class="tc-d">░░</span>  85%</div>
-<div class="tc-m">  ⚡  <span class="tc-w">${currentLang==='fr'?'Autonomie':'Autonomy'}</span>           <span class="tc-c">████████</span><span class="tc-d">░░</span>  82%</div>
-<div class="tc-m">  🔍  <span class="tc-w">${currentLang==='fr'?'Curiosité':'Curiosity'}</span>          <span class="tc-g">█████████</span><span class="tc-d">░</span>  90%</div>
-<div class="tc-m">  💬  <span class="tc-w">Communication</span>        <span class="tc-b">███████</span><span class="tc-d">░░░</span>  78%</div>
-<div class="tc-m">  🔄  <span class="tc-w">${currentLang==='fr'?'Adaptabilité':'Adaptability'}</span>       <span class="tc-p">████████</span><span class="tc-d">░░</span>  83%</div>`,
+    softskills: () => `<div class="tc-c" style="margin-bottom:5px;">Soft skills — Référentiel BUT3 :</div>
+<div class="tc-b" style="margin-top:4px;margin-bottom:2px;">🧠 ${currentLang==='fr'?'Manière d\'être':'Way of being'}</div>
+<div class="tc-m">  Posture pro · Gestion du stress · Adaptabilité · Engagement · Confiance</div>
+<div class="tc-p" style="margin-top:4px;margin-bottom:2px;">💬 ${currentLang==='fr'?'Manière de communiquer':'Way of communicating'}</div>
+<div class="tc-m">  Communication · Écoute · Assertivité · Feedbacks</div>
+<div class="tc-c" style="margin-top:4px;margin-bottom:2px;">🤝 ${currentLang==='fr'?'Manière de travailler avec les autres':'Way of working with others'}</div>
+<div class="tc-m">  Équipe · Coopération · Désaccords · Initiative</div>
+<div class="tc-g" style="margin-top:6px;">→ ${currentLang==='fr'?'Section détaillée sur le portfolio':'Detailed section on the portfolio'}</div>`,
 
     projects: () => `<div class="tc-c" style="margin-bottom:5px;">${currentLang==='fr'?'Projets :':'Projects:'}</div>
 <div><span class="tc-y">1.</span> <span class="tc-w">${currentLang==='fr'?'Stack Monitoring Réseau':'Network Monitoring Stack'}</span></div>
